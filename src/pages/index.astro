@@ -20,7 +20,7 @@ const plDate = today.toLocaleDateString('pl-PL', {
 <Layout lang="en">
   <main>
     <header>
-      <h1>Your Daily Reflection</h1>
+      <h1 id="app-title">Your Daily Reflection</h1>
     </header>
 
     <section class="card" role="main" aria-label="Today's reflection question">
@@ -62,6 +62,7 @@ const plDate = today.toLocaleDateString('pl-PL', {
 <script define:vars={{ questionEn: question.en, questionPl: question.pl, enDate, plDate }}>
   const questionEl = document.getElementById('question');
   const dateEl = document.getElementById('date-label');
+  const appTitle = document.getElementById('app-title');
   const btnLabel = document.getElementById('btn-label');
   const footerText = document.getElementById('footer-text');
   const btnEn = document.getElementById('btn-en');
@@ -72,6 +73,7 @@ const plDate = today.toLocaleDateString('pl-PL', {
     en: {
       question: questionEn,
       date: enDate,
+      title: 'Your Daily Reflection',
       btnRefresh: 'Show again',
       footer: 'Take a moment. Breathe. There is no right answer.',
       btnAriaRefresh: 'Show the same question again',
@@ -79,6 +81,7 @@ const plDate = today.toLocaleDateString('pl-PL', {
     pl: {
       question: questionPl,
       date: plDate,
+      title: 'Twoja codzienna refleksja',
       btnRefresh: 'Pokaż jeszcze raz',
       footer: 'Zatrzymaj się. Oddychaj. Nie ma złej odpowiedzi.',
       btnAriaRefresh: 'Pokaż to samo pytanie jeszcze raz',
@@ -97,6 +100,7 @@ const plDate = today.toLocaleDateString('pl-PL', {
     localStorage.setItem('ky-lang', lang);
 
     const t = i18n[lang];
+    appTitle.textContent = t.title;
     questionEl.textContent = t.question;
     questionEl.lang = lang;
     dateEl.textContent = t.date;

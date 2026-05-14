@@ -1,4 +1,4 @@
-const CACHE = 'know-yourself-v1';
+const CACHE = 'your-daily-reflection-v1';
 const ASSETS = ['/', '/manifest.json', '/favicon.svg'];
 
 self.addEventListener('install', (e) => {
