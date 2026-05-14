@@ -1,0 +1,366 @@
+---
+interface Props {
+  lang: 'en' | 'pl';
+}
+const { lang } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fef3e8" />
+    <meta
+      name="description"
+      content={lang === 'pl'
+        ? 'Codzienne pytanie do refleksji wspierające poczucie własnej wartości'
+        : 'A daily reflection question to support your sense of self-worth'}
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Know Yourself" />
+    <meta property="og:title" content="Know Yourself" />
+    <meta
+      property="og:description"
+      content={lang === 'pl'
+        ? 'Codzienne pytanie do refleksji wspierające poczucie własnej wartości'
+        : 'A daily reflection question to support your sense of self-worth'}
+    />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={lang === 'pl' ? 'pl_PL' : 'en_US'} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Know Yourself" />
+    <meta
+      name="twitter:description"
+      content={lang === 'pl'
+        ? 'Codzienne pytanie do refleksji wspierające poczucie własnej wartości'
+        : 'A daily reflection question to support your sense of self-worth'}
+    />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>Know Yourself</title>
+
+    <!-- Prevent flash of wrong theme -->
+    <script is:inline>
+      (function () {
+        const saved = localStorage.getItem('ky-theme');
+        const dark =
+          saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (dark) document.documentElement.setAttribute('data-theme', 'dark');
+      })();
+    </script>
+
+    <style is:global>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* ── Light theme (default) ── */
+      :root {
+        --bg: #fef3e8;
+        --surface: #fff9f2;
+        --surface-2: #fdefd8;
+        --accent: #d4845a;
+        --accent-h: #be7048;
+        --accent2: #9ec4aa;
+        --text: #3a2a1e;
+        --text-soft: #9a7f70;
+        --shadow: rgba(180, 100, 60, 0.1);
+        --border: rgba(212, 132, 90, 0.18);
+        --radius: 1.75rem;
+        --font:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, 'Helvetica Neue', Arial,
+          sans-serif;
+      }
+
+      /* ── Dark theme ── */
+      [data-theme='dark'] {
+        --bg: #1c1410;
+        --surface: #251a13;
+        --surface-2: #2e2018;
+        --accent: #e09a72;
+        --accent-h: #cc8660;
+        --accent2: #7aaa90;
+        --text: #f2e6d8;
+        --text-soft: #a08878;
+        --shadow: rgba(0, 0, 0, 0.3);
+        --border: rgba(224, 154, 114, 0.15);
+      }
+
+      html {
+        transition:
+          background 0.3s,
+          color 0.3s;
+      }
+
+      html,
+      body {
+        height: 100%;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font);
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100dvh;
+        padding: 1.5rem 1.25rem;
+      }
+
+      /* ── Top bar (theme toggle) ── */
+      .topbar {
+        position: fixed;
+        top: 1rem;
+        right: 1.25rem;
+        z-index: 10;
+      }
+
+      .theme-btn {
+        background: var(--surface);
+        border: 1.5px solid var(--border);
+        border-radius: 999px;
+        width: 2.4rem;
+        height: 2.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.1rem;
+        line-height: 1;
+        transition:
+          background 0.2s,
+          transform 0.1s,
+          border-color 0.2s;
+        box-shadow: 0 2px 8px var(--shadow);
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .theme-btn:hover {
+        background: var(--surface-2);
+      }
+      .theme-btn:active {
+        transform: scale(0.94);
+      }
+      .theme-btn:focus-visible {
+        outline: 3px solid var(--accent2);
+        outline-offset: 3px;
+      }
+
+      /* ── Main layout ── */
+      main {
+        width: 100%;
+        max-width: 660px;
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+        align-items: center;
+      }
+
+      /* ── Header ── */
+      header {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      .logo-mark {
+        font-size: 1.5rem;
+        line-height: 1;
+        opacity: 0.6;
+      }
+
+      header h1 {
+        font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      /* ── Card ── */
+      .card {
+        background: var(--surface);
+        border-radius: var(--radius);
+        border: 1.5px solid var(--border);
+        padding: clamp(2rem, 7vw, 3.5rem) clamp(1.5rem, 6vw, 3rem);
+        width: 100%;
+        box-shadow: 0 6px 40px var(--shadow);
+        text-align: center;
+        transition: background 0.3s;
+      }
+
+      .date-label {
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--text-soft);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+      }
+
+      .question {
+        font-size: clamp(1.2rem, 3.2vw, 1.65rem);
+        line-height: 1.7;
+        font-weight: 400;
+        color: var(--text);
+        letter-spacing: -0.01em;
+      }
+
+      /* ── Refresh button ── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 999px;
+        padding: 0.8rem 1.9rem;
+        font-family: var(--font);
+        font-size: 0.95rem;
+        font-weight: 500;
+        cursor: pointer;
+        letter-spacing: 0.02em;
+        transition:
+          background 0.2s,
+          transform 0.1s;
+        -webkit-tap-highlight-color: transparent;
+        box-shadow: 0 3px 14px var(--shadow);
+      }
+
+      .btn:hover {
+        background: var(--accent-h);
+      }
+      .btn:active {
+        transform: scale(0.97);
+      }
+      .btn:focus-visible {
+        outline: 3px solid var(--accent2);
+        outline-offset: 3px;
+      }
+
+      /* ── Language switch ── */
+      .lang-switch {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .lang-btn {
+        background: transparent;
+        border: 1.5px solid var(--border);
+        color: var(--text-soft);
+        border-radius: 999px;
+        padding: 0.35rem 1.1rem;
+        font-family: var(--font);
+        font-size: 0.82rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          color 0.2s,
+          border-color 0.2s;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .lang-btn.active {
+        background: var(--surface-2);
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .lang-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .lang-btn:focus-visible {
+        outline: 3px solid var(--accent2);
+        outline-offset: 3px;
+      }
+
+      /* ── Footer ── */
+      footer {
+        font-size: 0.78rem;
+        color: var(--text-soft);
+        text-align: center;
+        opacity: 0.65;
+        letter-spacing: 0.03em;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html,
+        .btn,
+        .theme-btn,
+        .card {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <button class="theme-btn" id="theme-btn" type="button" aria-label="Toggle dark mode">
+        <span id="theme-icon">🌙</span>
+      </button>
+    </div>
+
+    <slot />
+
+    <script>
+      // Service worker
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js');
+      }
+
+      // Theme toggle
+      const btn = document.getElementById('theme-btn');
+      const icon = document.getElementById('theme-icon');
+      const html = document.documentElement;
+
+      function isDark() {
+        return html.getAttribute('data-theme') === 'dark';
+      }
+
+      function applyTheme(dark) {
+        if (dark) {
+          html.setAttribute('data-theme', 'dark');
+        } else {
+          html.removeAttribute('data-theme');
+        }
+        icon.textContent = dark ? '☀️' : '🌙';
+        btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+        document
+          .querySelector('meta[name="theme-color"]')
+          ?.setAttribute('content', dark ? '#1c1410' : '#fef3e8');
+      }
+
+      // Init icon to match current theme (already applied before paint)
+      applyTheme(isDark());
+
+      btn.addEventListener('click', () => {
+        const next = !isDark();
+        localStorage.setItem('ky-theme', next ? 'dark' : 'light');
+        applyTheme(next);
+      });
+    </script>
+  </body>
+</html>

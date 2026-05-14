@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout lang="en">
+  <main>
+    <header>
+      <p class="logo-mark" aria-hidden="true">✦</p>
+      <h1>Know Yourself</h1>
+    </header>
+
+    <section class="card" role="main">
+      <p class="date-label" id="not-found-label">404</p>
+      <p class="question" id="not-found-msg">This page does not exist — but you do.</p>
+    </section>
+
+    <a href="/" class="btn" id="home-link">
+      <svg
+        aria-hidden="true"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <span id="home-label">Go to today's question</span>
+    </a>
+
+    <footer>
+      <p id="footer-404">Take a moment. Breathe. There is no right answer.</p>
+    </footer>
+  </main>
+</Layout>
+
+<script>
+  const lang =
+    localStorage.getItem('ky-lang') ||
+    (navigator.language.toLowerCase().startsWith('pl') ? 'pl' : 'en');
+
+  if (lang === 'pl') {
+    document.getElementById('not-found-label').textContent = '404';
+    document.getElementById('not-found-msg').textContent = 'Ta strona nie istnieje — ale Ty tak.';
+    document.getElementById('home-label').textContent = 'Wróć do pytania dnia';
+    document.getElementById('footer-404').textContent =
+      'Zatrzymaj się. Oddychaj. Nie ma złej odpowiedzi.';
+    document.getElementById('home-link').setAttribute('aria-label', 'Wróć do strony głównej');
+    document.documentElement.lang = 'pl';
+  }
+</script>

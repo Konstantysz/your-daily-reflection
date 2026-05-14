@@ -1,0 +1,27 @@
+{
+  "name": "Know Yourself",
+  "short_name": "Know Yourself",
+  "description": "A daily reflection question to support your sense of self-worth",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5efe6",
+  "theme_color": "#f5efe6",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "categories": ["health", "lifestyle", "education"]
+}
