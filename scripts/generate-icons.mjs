@@ -71,7 +71,7 @@ const ogSvg = `
   <!-- Title -->
   <text x="600" y="310" font-family="-apple-system, Helvetica Neue, Arial, sans-serif"
         font-size="72" font-weight="700" letter-spacing="6"
-        fill="#d4845a" text-anchor="middle">KNOW YOURSELF</text>
+        fill="#d4845a" text-anchor="middle">YOUR DAILY REFLECTION</text>
 
   <!-- Subtitle -->
   <text x="600" y="378" font-family="-apple-system, Helvetica Neue, Arial, sans-serif"

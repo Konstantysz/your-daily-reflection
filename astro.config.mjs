@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://know-yourself.app',
+  site: 'https://your-daily-reflection.netlify.app',
   compressHTML: true,
 });

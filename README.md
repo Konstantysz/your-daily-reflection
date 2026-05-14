@@ -1,8 +1,8 @@
-# Know Yourself
+# Your Daily Reflection
 
 A daily wellbeing app that presents one open-ended reflection question per day to support self-awareness and self-esteem — designed for people in therapy or anyone seeking deeper self-understanding.
 
-**Live:** [know-yourself.app](https://know-yourself.app)
+**Live:** [your-daily-reflection.netlify.app](https://your-daily-reflection.netlify.app)
 
 ## How it works
 

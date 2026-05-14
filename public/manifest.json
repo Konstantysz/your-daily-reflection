@@ -1,6 +1,6 @@
 {
-  "name": "Know Yourself",
-  "short_name": "Know Yourself",
+  "name": "Your Daily Reflection",
+  "short_name": "Your Daily Reflection",
   "description": "A daily reflection question to support your sense of self-worth",
   "start_url": "/",
   "display": "standalone",
